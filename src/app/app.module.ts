@@ -18,6 +18,7 @@ import { WelcomeComponent } from './welcome/welcome.component';
 import { HeaderComponent } from './navigation/header/header.component';
 import { SideNavListComponent } from './navigation/side-nav-list/side-nav-list.component';
 import { StopTrainingComponent } from './training/current-training/stop-training.component';
+import { AuthService } from './auth/auth.service';
 
 
 @NgModule({
@@ -42,7 +43,7 @@ import { StopTrainingComponent } from './training/current-training/stop-training
     FlexLayoutModule,
     FormsModule
   ],
-  providers: [],
+  providers: [AuthService],
   bootstrap: [AppComponent],
   entryComponents: [StopTrainingComponent]
 })
