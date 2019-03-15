@@ -19,6 +19,7 @@ import { HeaderComponent } from './navigation/header/header.component';
 import { SideNavListComponent } from './navigation/side-nav-list/side-nav-list.component';
 import { StopTrainingComponent } from './training/current-training/stop-training.component';
 import { AuthService } from './auth/auth.service';
+import { TrainingService } from './training/training.service';
 
 
 @NgModule({
@@ -43,7 +44,7 @@ import { AuthService } from './auth/auth.service';
     FlexLayoutModule,
     FormsModule
   ],
-  providers: [AuthService],
+  providers: [AuthService, TrainingService],
   bootstrap: [AppComponent],
   entryComponents: [StopTrainingComponent]
 })
