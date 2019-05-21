@@ -35,9 +35,9 @@ export class TrainingService {
       return docArray.map(doc => {
         return {
           id: doc.payload.doc.id,
-          name: doc.payload.doc.data().name || null, //pulling data from data() out on the above object
-          duration: doc.payload.doc.data().duration || null,
-          calories: doc.payload.doc.data().calories || null
+          name: doc.payload.doc.data().name, //pulling data from data() out on the above object
+          duration: doc.payload.doc.data().duration,
+          calories: doc.payload.doc.data().calories
         }
       })
     }))
@@ -70,7 +70,7 @@ export class TrainingService {
   }
 
   private addDataToDatabase(exercise: Exercise) {
-    
+    this.db.collection('finishedExercides').add(exercise);
   }
 
 }
