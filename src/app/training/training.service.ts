@@ -18,16 +18,16 @@ export class TrainingService {
 
   }
 
-  getAvailableExercises() {
+  public getAvailableExercises() {
     return this.availableExercises.slice();
   }
 
-  startExercise(selectedId: string) {
+  public startExercise(selectedId: string) {
     this.runningExercise = this.availableExercises.find(ex => ex.id === selectedId);
     this.exerciseChanged.next({ ...this.runningExercise })
   }
 
-  fetchRunningExercise() {
+  public fetchRunningExercise(): void {
     this.db
     .collection('availableExercises')
     .snapshotChanges()
@@ -35,9 +35,9 @@ export class TrainingService {
       return docArray.map(doc => {
         return {
           id: doc.payload.doc.id,
-          name: doc.payload.doc.data().name, //pulling data from data() out on the above object
-          duration: doc.payload.doc.data().duration,
-          calories: doc.payload.doc.data().calories
+          name: doc.payload.doc.data().name || null, //pulling data from data() out on the above object
+          duration: doc.payload.doc.data().duration || null,
+          calories: doc.payload.doc.data().calories || null
         }
       })
     }))
@@ -47,13 +47,13 @@ export class TrainingService {
     });
   }
 
-  completeExercise() {
+  public completeExercise(): void {
     this.exercises.push({...this.runningExercise, date:new Date(), state:'completed'});
     this.runningExercise = null;
     this.exerciseChanged.next(null);
   }
 
-  cancelExercise(progress: number) {
+  public cancelExercise(progress: number): void {
     this.exercises.push({
       ...this.runningExercise,
       duration: this.runningExercise.duration * (progress / 100),
@@ -65,8 +65,12 @@ export class TrainingService {
     this.exerciseChanged.next(null);
   }
 
-  getCompletedOrCancelledExercises() {
+  public getCompletedOrCancelledExercises(): Exercise[] {
     return this.exercises.slice();
+  }
+
+  private addDataToDatabase(exercise: Exercise) {
+    
   }
 
 }
