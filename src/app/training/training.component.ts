@@ -6,14 +6,13 @@ import { TrainingService } from './training.service';
 @Component({
   selector: 'app-training',
   templateUrl: './training.component.html',
-  styleUrls: ['./training.component.scss']
+  styleUrls: ['./training.component.css']
 })
-
 export class TrainingComponent implements OnInit {
   ongoingTraining = false;
   exerciseSubscription: Subscription;
 
-  constructor(private trainingService: TrainingService) { }
+  constructor(private trainingService: TrainingService) {}
 
   ngOnInit() {
     this.exerciseSubscription = this.trainingService.exerciseChanged.subscribe(
@@ -24,7 +23,6 @@ export class TrainingComponent implements OnInit {
           this.ongoingTraining = false;
         }
       }
-    )
+    );
   }
-
 }

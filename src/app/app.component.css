@@ -3,5 +3,6 @@ mat-sidenav-container, mat-sidenav-content, mat-sidenav {
 }
 
 mat-sidenav {
-  width:200px;
+  width: 250px;
 }
+
